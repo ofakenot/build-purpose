@@ -6,24 +6,18 @@
     <title>Build Purpose | Premium Usernames, SWAP Transfer & Rare Emails</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
+        /* CSS RESET & BASE VARIABLES */
         :root {
-            --bg-color: #ffffff;
-            --surface-color: #f8f9fa;
-            --surface-hover: #f1f3f5;
-            --card-border: #e4e4e7;
-            --card-border-hover: #000000;
-            --text-primary: #09090b;
-            --text-secondary: #52525b;
-            --text-muted: #71717a;
-            --accent-black: #000000;
-            --accent-hover: #18181b;
-            --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
-            --radius-lg: 20px;
-            --radius-md: 14px;
-            --radius-sm: 10px;
+            --brand-black: #0a0a0a;
+            --brand-white: #ffffff;
+            --brand-gray-light: #f4f4f5;
+            --brand-gray-mid: #e4e4e7;
+            --text-main: #18181b;
+            --text-mute: #52525b;
+            --accent: #2563eb;
         }
 
         *, *::before, *::after {
@@ -32,1360 +26,555 @@
             padding: 0;
         }
 
-        html {
-            scroll-behavior: smooth;
-            background-color: var(--bg-color);
+        html, body {
             width: 100%;
             overflow-x: hidden;
-        }
-
-        body {
-            font-family: var(--font-family);
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            line-height: 1.5;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--brand-white);
+            color: var(--text-main);
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            width: 100%;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
+            scroll-behavior: smooth;
         }
 
-        /* Container Structure */
-        .container {
+        /* SAFE CONTAINER - THE CORE FIX FOR MOBILE MARGINS */
+        .wrapper {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 8vw; 
         }
 
-        .section-padding {
-            padding: 80px 0;
+        @media (min-width: 768px) {
+            .wrapper {
+                padding: 0 40px;
+            }
         }
 
-        .text-center {
-            text-align: center;
+        /* SECTION BACKGROUNDS */
+        .section-light { background-color: var(--brand-white); padding: 80px 0; }
+        .section-gray { background-color: var(--brand-gray-light); padding: 80px 0; }
+        .section-dark { background-color: var(--brand-black); padding: 80px 0; color: var(--brand-white); }
+        
+        @media (max-width: 768px) {
+            .section-light, .section-gray, .section-dark { padding: 50px 0; }
         }
 
-        /* Cards & Surfaces */
-        .card-box {
-            background: #ffffff;
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-lg);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+        /* TYPOGRAPHY */
+        h1, h2, h3 { font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; }
+        h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 20px; }
+        h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); margin-bottom: 16px; }
+        h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); margin-bottom: 12px; }
+        p { font-size: clamp(0.95rem, 2vw, 1.1rem); color: var(--text-mute); margin-bottom: 20px; }
+        .section-dark p { color: #a1a1aa; }
 
-        .card-box:hover {
-            border-color: var(--card-border-hover);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        }
-
-        /* Badges */
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 14px;
-            border-radius: 99px;
-            font-size: 12px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            background: var(--surface-color);
-            border: 1px solid var(--card-border);
-            color: var(--text-primary);
-        }
-
-        .badge-dark {
-            background: var(--accent-black);
-            color: #ffffff;
-            border-color: var(--accent-black);
-        }
-
-        /* Buttons */
-        .btn {
+        /* BUTTONS */
+        .btn-primary {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            background: var(--accent-black);
-            color: #ffffff;
+            background: var(--brand-black);
+            color: var(--brand-white);
             padding: 16px 32px;
-            border-radius: 99px;
+            border-radius: 8px;
             font-weight: 700;
             font-size: 15px;
-            letter-spacing: 0.2px;
             text-decoration: none;
-            border: 1px solid var(--accent-black);
+            border: 2px solid var(--brand-black);
+            transition: all 0.2s;
             cursor: pointer;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
-            transition: all 0.25s ease;
-            text-align: center;
+            width: fit-content;
         }
-
-        .btn:hover {
-            background: var(--accent-hover);
-            border-color: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-        }
-
-        .btn-outline {
-            background: #ffffff;
-            color: var(--text-primary);
-            border: 1px solid var(--card-border);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-        }
-
-        .btn-outline:hover {
-            background: var(--surface-color);
-            border-color: var(--accent-black);
-            color: var(--accent-black);
-            transform: translateY(-2px);
-        }
-
-        .email-direct-btn {
-            background: #ffffff;
-            color: var(--accent-black);
-            border: 2px solid var(--accent-black);
-            padding: 12px 24px;
-            border-radius: 99px;
-            font-weight: 800;
-            text-decoration: none;
+        .btn-primary:hover { background: transparent; color: var(--brand-black); }
+        
+        .btn-secondary {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            gap: 10px;
+            background: transparent;
+            color: var(--brand-black);
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            border: 2px solid var(--brand-gray-mid);
             transition: all 0.2s;
+            cursor: pointer;
         }
+        .btn-secondary:hover { border-color: var(--brand-black); }
 
-        .email-direct-btn:hover {
-            background: var(--accent-black);
-            color: #ffffff;
+        .btn-white {
+            background: var(--brand-white);
+            color: var(--brand-black);
+            border-color: var(--brand-white);
         }
+        .btn-white:hover { background: transparent; color: var(--brand-white); }
 
-        /* Header / Navbar */
+        /* HEADER */
         header {
             position: sticky;
             top: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.94);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--card-border);
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid var(--brand-gray-mid);
+            z-index: 100;
             padding: 14px 0;
         }
-
-        .nav-wrapper {
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 16px;
         }
+        .logo img { height: 32px; width: auto; display: block; }
+        .lang-switcher { display: flex; gap: 8px; }
+        .lang-btn { background: var(--brand-gray-light); border: none; padding: 6px 12px; border-radius: 4px; font-weight: 600; cursor: pointer; font-size: 12px; }
+        .lang-btn.active { background: var(--brand-black); color: white; }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            flex-shrink: 0;
-        }
-
-        .logo-placeholder {
-            min-width: 150px;
-            height: 42px;
-            border: 1px dashed #a1a1aa;
-            border-radius: var(--radius-sm);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 12px;
-            background: var(--surface-color);
-        }
-
-        .logo-placeholder-text {
-            font-size: 13px;
-            color: var(--text-primary);
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            font-weight: 800;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 22px;
-            align-items: center;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-weight: 600;
-            font-size: 14px;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-black);
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-shrink: 0;
-        }
-
-        /* Language Switcher */
-        .lang-switcher {
-            display: flex;
-            background: var(--surface-color);
-            border: 1px solid var(--card-border);
-            border-radius: 99px;
-            padding: 3px;
-            gap: 2px;
-        }
-
-        .lang-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            padding: 5px 10px;
-            border-radius: 99px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .lang-btn.active {
-            background: var(--accent-black);
-            color: #ffffff;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 55px 0 35px;
-        }
-
+        /* HERO LAYOUT */
         .hero-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 48px;
+            gap: 60px;
             align-items: center;
         }
-
-        .hero-title {
-            font-size: 46px;
-            font-weight: 800;
-            line-height: 1.12;
-            letter-spacing: -1.2px;
-            margin-bottom: 20px;
-            color: var(--accent-black);
-        }
-
-        .hero-features {
-            list-style: none;
-            margin-bottom: 28px;
-        }
-
+        .hero-features { list-style: none; margin: 24px 0; }
         .hero-features li {
-            font-size: 15px;
-            font-weight: 500;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: var(--text-secondary);
-        }
-
-        .hero-features li.check::before {
-            content: "✓";
-            color: #ffffff;
-            background: var(--accent-black);
-            border-radius: 50%;
-            width: 22px;
-            height: 22px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 13px;
-            flex-shrink: 0;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 14px;
-            flex-wrap: wrap;
-        }
-
-        .hero-image-box {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hero-image-box img {
-            width: 100%;
-            max-width: 520px;
-            height: auto;
-            object-fit: contain;
-            border-radius: var(--radius-lg);
-        }
-
-        /* INFINITE MARQUEE SLIDER FOR PLATFORMS */
-        .marquee-section {
-            padding: 30px 0;
-            border-top: 1px solid var(--card-border);
-            border-bottom: 1px solid var(--card-border);
-            margin: 40px 0;
-            background: var(--surface-color);
-            overflow: hidden;
-        }
-
-        .marquee-heading {
-            text-align: center;
-            font-size: 13px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-        }
-
-        .marquee-container {
-            overflow: hidden;
-            white-space: nowrap;
-            width: 100%;
-            position: relative;
-            mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-        }
-
-        .marquee-track {
-            display: inline-flex;
-            align-items: center;
-            gap: 40px;
-            animation: marquee 22s linear infinite;
-            width: max-content;
-        }
-
-        .marquee-container:hover .marquee-track {
-            animation-play-state: paused;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .platform-badge-card {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: #ffffff;
-            border: 1px solid var(--card-border);
-            border-radius: 99px;
-            padding: 10px 22px;
-            font-weight: 700;
-            font-size: 15px;
-            color: var(--text-primary);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-            transition: border-color 0.2s, transform 0.2s;
-        }
-
-        .platform-badge-card:hover {
-            border-color: var(--accent-black);
-            transform: translateY(-2px);
-        }
-
-        .platform-icon {
-            width: 22px;
-            height: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .platform-icon svg {
-            width: 100%;
-            height: 100%;
-            fill: var(--accent-black);
-        }
-
-        /* Section Headings */
-        .section-title {
-            font-size: 34px;
-            font-weight: 800;
-            letter-spacing: -0.8px;
-            margin-bottom: 12px;
-            color: var(--accent-black);
-        }
-
-        .section-subtitle {
-            font-size: 15px;
-            color: var(--text-secondary);
-            margin-bottom: 36px;
-            max-width: 760px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
-        }
-
-        /* Payment Methods Highlight */
-        .payment-highlight {
-            border: 2px solid var(--accent-black);
-            background: #ffffff;
-            border-radius: var(--radius-lg);
-            padding: 32px;
-            text-align: center;
-            margin: 40px 0;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-        }
-
-        .payment-tags {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-
-        .payment-tag {
-            background: var(--accent-black);
-            color: #ffffff;
-            padding: 10px 20px;
-            border-radius: 99px;
-            font-weight: 800;
-            font-size: 13px;
-            letter-spacing: 0.5px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* Process List Grid */
-        .process-list {
-            max-width: 900px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-
-        .process-card {
-            padding: 26px 30px;
             display: flex;
             align-items: flex-start;
-            gap: 20px;
-            background: #ffffff;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-weight: 500;
         }
-
-        .process-number {
-            font-size: 16px;
-            font-weight: 800;
-            color: #ffffff;
-            background: var(--accent-black);
-            width: 40px;
-            height: 40px;
+        .hero-features li::before {
+            content: "✓";
+            color: var(--brand-white);
+            background: var(--brand-black);
             border-radius: 50%;
+            width: 24px;
+            height: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .hero-image { width: 100%; border-radius: 16px; object-fit: cover; }
+        .btn-group { display: flex; gap: 16px; flex-wrap: wrap; }
+
+        /* MARQUEE */
+        .marquee-wrapper { overflow: hidden; background: var(--brand-gray-light); padding: 24px 0; border-bottom: 1px solid var(--brand-gray-mid); }
+        .marquee-track { display: flex; gap: 40px; animation: scroll 22s linear infinite; width: max-content; }
+        .marquee-item { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; }
+        .marquee-item svg { width: 20px; height: 20px; fill: var(--brand-black); flex-shrink: 0; }
+        @keyframes scroll { to { transform: translateX(-50%); } }
+
+        /* HOW IT WORKS */
+        .steps-container { display: flex; flex-direction: column; gap: 32px; max-width: 800px; margin: 40px auto 0; }
+        .step-row { display: flex; gap: 24px; align-items: flex-start; }
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: var(--brand-black);
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 900;
             flex-shrink: 0;
         }
+        .step-content h3 { margin-bottom: 8px; font-size: 1.2rem;}
+        .step-content p { margin-bottom: 0; }
 
-        .process-text {
-            font-size: 15px;
-            color: var(--text-secondary);
-            font-weight: 500;
-            line-height: 1.6;
+        /* PRICING GRID */
+        .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 40px; }
+        .price-card {
+            background: var(--brand-white);
+            border: 2px solid var(--brand-gray-mid);
+            padding: 40px;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
+        .price-card.highlight { border-color: var(--brand-black); box-shadow: 8px 8px 0px var(--brand-black); }
+        .price-tag { font-size: 2.5rem; font-weight: 900; margin: 16px 0; color: var(--brand-black); }
+        .price-card p { flex-grow: 1; }
 
-        .process-text strong {
-            color: var(--accent-black);
+        /* FAQ ACCORDION */
+        .faq-list { max-width: 800px; margin: 40px auto 0; }
+        .faq-item { border-bottom: 1px solid var(--brand-gray-mid); }
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: left;
+            padding: 24px 0;
+            font-size: 1.1rem;
             font-weight: 700;
-        }
-
-        /* Rare Email Section Card */
-        .rare-email-card {
-            background: var(--surface-color);
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-lg);
-            padding: 40px 36px;
-            margin: 40px 0;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 28px;
-            align-items: center;
-        }
-
-        /* Carousel Section */
-        .carousel-container-outer {
-            width: 100%;
-            position: relative;
-            margin-top: 24px;
-        }
-
-        .carousel-viewport {
-            width: 100%;
-            overflow: hidden;
-            border-radius: var(--radius-lg);
-            padding: 10px 0;
-        }
-
-        .carousel-track {
-            display: flex;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            gap: 20px;
-            width: 100%;
-        }
-
-        .carousel-slide {
-            flex: 0 0 calc(33.333% - 13.33px);
-            max-width: calc(33.333% - 13.33px);
-            background: #ffffff;
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 12px;
-        }
-
-        .carousel-slide img {
-            width: 100%;
-            height: auto;
-            max-height: 480px;
-            object-fit: contain;
-            border-radius: var(--radius-sm);
-            display: block;
-        }
-
-        .carousel-nav {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 16px;
-            margin-top: 24px;
-        }
-
-        .carousel-btn {
-            background: #ffffff;
-            border: 1px solid var(--card-border);
-            color: var(--accent-black);
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            color: var(--brand-black);
             cursor: pointer;
-            font-size: 18px;
-            font-weight: bold;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            transition: all 0.2s;
-        }
-
-        .carousel-btn:hover {
-            background: var(--accent-black);
-            color: #ffffff;
-            border-color: var(--accent-black);
-        }
-
-        .carousel-dots {
             display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-
-        .carousel-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #d4d4d8;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .carousel-dot.active {
-            background: var(--accent-black);
-            width: 24px;
-            border-radius: 99px;
-        }
-
-        /* Pricing Grid */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 28px;
-            max-width: 980px;
-            margin: 0 auto;
-        }
-
-        .pricing-card {
-            padding: 38px 34px;
-            display: flex;
-            flex-direction: column;
             justify-content: space-between;
-            background: #ffffff;
+            align-items: center;
         }
-
-        .pricing-price {
-            font-size: 38px;
-            font-weight: 800;
-            color: var(--accent-black);
-            margin: 12px 0 16px;
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--text-mute);
         }
+        .faq-answer-inner { padding-bottom: 24px; }
+        .faq-item.active .faq-answer { max-height: 300px; }
+        .faq-item.active .faq-question::after { content: "−"; font-size: 24px; }
+        .faq-question::after { content: "+"; font-size: 24px; }
 
-        /* Form Wrapper */
-        .form-wrapper {
-            max-width: 760px;
-            margin: 0 auto;
-            padding: 44px 38px;
-            background: #ffffff;
+        /* FORM */
+        .contact-form {
+            max-width: 600px;
+            margin: 40px auto 0;
+            background: var(--brand-white);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid var(--brand-gray-mid);
         }
-
-        .form-group {
-            margin-bottom: 22px;
-        }
-
-        .form-group-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        .form-label {
-            display: block;
-            font-weight: 700;
-            font-size: 14px;
-            margin-bottom: 8px;
-            color: var(--text-primary);
-        }
-
-        .form-input, .form-textarea {
+        .form-group { margin-bottom: 24px; }
+        .form-label { display: block; font-weight: 700; margin-bottom: 8px; font-size: 14px; }
+        .form-control {
             width: 100%;
-            padding: 14px 16px;
-            background: var(--surface-color);
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-sm);
+            padding: 16px;
+            border: 2px solid var(--brand-gray-mid);
+            border-radius: 8px;
             font-family: inherit;
-            font-size: 14px;
-            color: var(--text-primary);
-            transition: all 0.2s;
+            font-size: 16px;
+            transition: border-color 0.2s;
         }
-
-        .form-input:focus, .form-textarea:focus {
-            outline: none;
-            border-color: var(--accent-black);
-            background: #ffffff;
-            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
-        }
-
-        .form-textarea {
-            resize: vertical;
-            min-height: 110px;
-        }
-
-        .radio-option {
+        .form-control:focus { outline: none; border-color: var(--brand-black); }
+        .form-textarea { resize: vertical; min-height: 100px; }
+        .form-radio-group { display: flex; flex-direction: column; gap: 12px; }
+        .radio-label {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 12px 16px;
-            background: var(--surface-color);
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-sm);
-            margin-bottom: 10px;
+            padding: 16px;
+            border: 2px solid var(--brand-gray-mid);
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 14px;
             font-weight: 500;
-            color: var(--text-secondary);
-            transition: background 0.2s;
+            font-size: 14px;
+            transition: all 0.2s;
         }
+        .radio-label:hover { border-color: var(--brand-black); }
+        .radio-label input { width: 18px; height: 18px; accent-color: var(--brand-black); }
 
-        .radio-option:hover {
-            background: var(--surface-hover);
-        }
+        /* CAROUSEL */
+        .carousel { overflow: hidden; margin-top: 40px; }
+        .carousel-track { display: flex; gap: 24px; transition: transform 0.3s ease; }
+        .carousel-slide { flex: 0 0 calc(33.333% - 16px); }
+        .carousel-slide img { width: 100%; border-radius: 12px; border: 1px solid var(--brand-gray-mid); display: block; }
+        .carousel-controls { display: flex; justify-content: center; gap: 16px; margin-top: 24px; }
+        .c-btn { width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--brand-black); background: white; cursor: pointer; font-weight: bold; font-size: 18px;}
 
-        .radio-option input {
-            accent-color: var(--accent-black);
-            width: 16px;
-            height: 16px;
-        }
+        /* FOOTER */
+        footer { background: var(--brand-black); color: white; text-align: center; padding: 40px 0; }
+        footer p { color: #a1a1aa; margin: 0; font-size: 14px;}
 
-        /* FAQ Section */
-        .faq-accordion {
-            max-width: 880px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .faq-item {
-            overflow: hidden;
-            background: #ffffff;
-        }
-
-        .faq-header {
-            padding: 22px 26px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 16px;
-            color: var(--text-primary);
-        }
-
-        .faq-icon {
-            font-size: 20px;
-            font-weight: bold;
-            transition: transform 0.3s ease;
-            color: var(--accent-black);
-        }
-
-        .faq-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease;
-            padding: 0 26px;
-            color: var(--text-secondary);
-            font-size: 14.5px;
-            line-height: 1.6;
-        }
-
-        .faq-item.open .faq-icon {
-            transform: rotate(45deg);
-        }
-
-        .faq-item.open .faq-body {
-            max-height: 320px;
-            padding: 0 26px 22px 26px;
-        }
-
-        /* Footer & Banner */
-        .footer-banner {
-            padding: 48px 32px;
-            text-align: center;
-            background: var(--surface-color);
-        }
-
-        footer {
-            border-top: 1px solid var(--card-border);
-            padding: 32px 0;
-            margin-top: 60px;
-            font-size: 13px;
-            color: var(--text-muted);
-            text-align: center;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 16px;
-            margin-top: 12px;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        /* Mobile Responsive Rules */
-        @media (max-width: 1024px) {
-            .carousel-slide {
-                flex: 0 0 calc(50% - 10px);
-                max-width: calc(50% - 10px);
-            }
-        }
-
+        /* MOBILE RESPONSIVE (Strict Rules) */
         @media (max-width: 768px) {
-            .container {
-                padding: 0 16px;
-            }
-
-            .section-padding {
-                padding: 45px 0;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero {
-                padding: 25px 0 15px;
-            }
-
-            .hero-grid {
-                grid-template-columns: 1fr;
-                gap: 28px;
-            }
-
-            .hero-title {
-                font-size: 30px;
-            }
-
-            .hero-actions {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .hero-actions .btn {
-                width: 100%;
-            }
-
-            .section-title {
-                font-size: 25px;
-            }
-
-            .rare-email-card {
-                grid-template-columns: 1fr;
-                padding: 26px 20px;
-                text-align: center;
-            }
-
-            .carousel-slide {
-                flex: 0 0 100%;
-                max-width: 100%;
-            }
-
-            .pricing-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .pricing-card {
-                padding: 28px 20px;
-            }
-
-            .pricing-price {
-                font-size: 30px;
-            }
-
-            .form-wrapper {
-                padding: 24px 18px;
-            }
-
-            .form-group-row {
-                grid-template-columns: 1fr;
-            }
-
-            .platform-badge-card {
-                padding: 8px 16px;
-                font-size: 13px;
-            }
+            .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+            .btn-group { flex-direction: column; }
+            .btn-primary, .btn-secondary { width: 100%; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .price-card { padding: 32px 24px; }
+            .contact-form { padding: 32px 24px; border: none; border-top: 1px solid var(--brand-gray-mid); border-radius: 0; }
+            .step-row { gap: 16px; }
+            .step-number { width: 40px; height: 40px; font-size: 16px; }
+            .carousel-slide { flex: 0 0 100%; }
+            * { word-break: break-word; overflow-wrap: break-word; }
         }
     </style>
 </head>
 <body>
 
-    <!-- SVG LOGO DEFINITIONS SYMBOLS -->
+    <!-- SVG ICONS -->
     <svg style="display: none;">
-        <!-- Instagram -->
-        <symbol id="icon-instagram" viewBox="0 0 24 24">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-        </symbol>
-        <!-- TikTok -->
-        <symbol id="icon-tiktok" viewBox="0 0 24 24">
-            <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.98-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.82.57-1.31 1.56-1.28 2.57.02 1.23.75 2.37 1.88 2.82.97.4 2.12.28 2.99-.29.8-.52 1.3-1.43 1.34-2.38.05-3.81.02-7.62.03-11.43z"/>
-        </symbol>
-        <!-- Telegram -->
-        <symbol id="icon-telegram" viewBox="0 0 24 24">
-            <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.03 9.56c-.15.68-.55.84-1.12.52l-3.1-2.28-1.5 1.44c-.17.17-.31.31-.63.31l.22-3.16 5.76-5.2c.25-.22-.05-.34-.39-.12l-7.12 4.48-3.07-.96c-.67-.21-.68-.67.14-.99l12.01-4.63c.56-.21 1.05.13.83.99z"/>
-        </symbol>
-        <!-- X (Twitter) -->
-        <symbol id="icon-x" viewBox="0 0 24 24">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-        </symbol>
-        <!-- YouTube -->
-        <symbol id="icon-youtube" viewBox="0 0 24 24">
-            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-        </symbol>
-        <!-- Discord -->
-        <symbol id="icon-discord" viewBox="0 0 24 24">
-            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
-        </symbol>
-        <!-- Snapchat -->
-        <symbol id="icon-snapchat" viewBox="0 0 24 24">
-            <path d="M12.008 1.2c-3.844 0-6.195 2.766-6.195 5.895 0 1.2.378 2.552.88 3.518.156.3.21.488.083.715-.125.228-.432.341-.755.457-.797.283-1.64.673-1.64 1.625 0 .684.453 1.238 1.157 1.438.381.108.682.043.916-.183.253-.245.412-.4.654-.4.185 0 .385.086.608.283.673.593 1.968 1.378 3.292 1.378 1.324 0 2.619-.785 3.292-1.378.223-.197.423-.283.608-.283.242 0 .401.155.654.4.234.226.535.291.916.183.704-.2 1.157-.754 1.157-1.438 0-.952-.843-1.342-1.64-1.625-.323-.116-.63-.229-.755-.457-.127-.227-.073-.415.083-.715.502-.966.88-2.318.88-3.518 0-3.129-2.351-5.895-6.195-5.895z"/>
-        </symbol>
+        <symbol id="icon-instagram" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4z"/></symbol>
+        <symbol id="icon-tiktok" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.98-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.82.57-1.31 1.56-1.28 2.57.02 1.23.75 2.37 1.88 2.82.97.4 2.12.28 2.99-.29.8-.52 1.3-1.43 1.34-2.38.05-3.81.02-7.62.03-11.43z"/></symbol>
+        <symbol id="icon-telegram" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.03 9.56c-.15.68-.55.84-1.12.52l-3.1-2.28-1.5 1.44c-.17.17-.31.31-.63.31l.22-3.16 5.76-5.2c.25-.22-.05-.34-.39-.12l-7.12 4.48-3.07-.96c-.67-.21-.68-.67.14-.99l12.01-4.63c.56-.21 1.05.13.83.99z"/></symbol>
+        <symbol id="icon-x" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></symbol>
+        <symbol id="icon-youtube" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></symbol>
+        <symbol id="icon-discord" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></symbol>
+        <symbol id="icon-snapchat" viewBox="0 0 24 24"><path d="M12.008 1.2c-3.844 0-6.195 2.766-6.195 5.895 0 1.2.378 2.552.88 3.518.156.3.21.488.083.715-.125.228-.432.341-.755.457-.797.283-1.64.673-1.64 1.625 0 .684.453 1.238 1.157 1.438.381.108.682.043.916-.183.253-.245.412-.4.654-.4.185 0 .385.086.608.283.673.593 1.968 1.378 3.292 1.378 1.324 0 2.619-.785 3.292-1.378.223-.197.423-.283.608-.283.242 0 .401.155.654.4.234.226.535.291.916.183.704-.2 1.157-.754 1.157-1.438 0-.952-.843-1.342-1.64-1.625-.323-.116-.63-.229-.755-.457-.127-.227-.073-.415.083-.715.502-.966.88-2.318.88-3.518 0-3.129-2.351-5.895-6.195-5.895z"/></symbol>
     </svg>
 
-    <!-- Header / Navbar -->
     <header>
-        <div class="container nav-wrapper">
-            <a href="#" class="logo-container">
-                <div class="logo-placeholder">
-                    <span class="logo-placeholder-text">✦ BUILD PURPOSE</span>
-                </div>
+        <div class="wrapper header-content">
+            <a href="#" class="logo">
+                <img src="images/buildpurpose.png" alt="Build Purpose Logo">
             </a>
-
-            <ul class="nav-links">
-                <li><a href="#available-list" data-i18n="nav_available">Nomes Disponíveis</a></li>
-                <li><a href="#platforms" data-i18n="nav_platforms">Plataformas</a></li>
-                <li><a href="#how-it-works" data-i18n="nav_how">Como Funciona</a></li>
-                <li><a href="#rare-emails" data-i18n="nav_emails">E-mails Raros</a></li>
-                <li><a href="#pricing" data-i18n="nav_pricing">Valores</a></li>
-                <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
-            </ul>
-
-            <div class="nav-actions">
-                <div class="lang-switcher">
-                    <button class="lang-btn active" onclick="setLanguage('pt')">PT</button>
-                    <button class="lang-btn" onclick="setLanguage('en')">EN</button>
-                    <button class="lang-btn" onclick="setLanguage('es')">ES</button>
-                </div>
-                <!-- Direct Email Link -->
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=iii@email.com" target="_blank" class="btn btn-outline" style="padding: 8px 16px; font-size: 12px;">
-                    ✉ iii@email.com
-                </a>
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="setLanguage('pt')">PT</button>
+                <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+                <button class="lang-btn" onclick="setLanguage('es')">ES</button>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero container">
-        <div class="hero-grid">
-            <div class="hero-content">
-                <span class="badge badge-dark" style="margin-bottom: 14px;" data-i18n="hero_badge">Portfólio Exclusivo & Serviços Meta</span>
-                <h1 class="hero-title" data-i18n="hero_title">Usernames Únicos, Curtos e Reivindicações Premium</h1>
-                
-                <ul class="hero-features">
-                    <li class="check" data-i18n="feat_1">Usernames ultra raros de 2, 3 e 4 letras</li>
-                    <li class="check" data-i18n="feat_2">Palavras raras e nomes marcantes para empresas e marcas fortes</li>
-                    <li class="check" data-i18n="feat_3">Serviço de reivindicação de @usernames inativos em múltiplas redes</li>
-                    <li class="check" data-i18n="feat_4">Transferência via técnica SWAP para a sua conta preferida</li>
-                    <li class="check" data-i18n="feat_5">Vendas exclusivas de domínios de e-mail raros @email.com e @mail.com</li>
-                </ul>
-                
-                <div class="hero-actions">
-                    <a href="https://t.me/buildpurpose" target="_blank" class="btn">
-                        <svg class="platform-icon" viewBox="0 0 24 24" fill="currentColor" style="width: 18px; height: 18px;"><use href="#icon-telegram"/></svg>
-                        <span data-i18n="btn_telegram_list">VER TABELA NO TELEGRAM</span>
-                    </a>
-                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=iii@email.com" target="_blank" class="btn btn-outline">
-                        <span data-i18n="btn_email_direct">Falar por E-mail</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Hero Image -->
-            <div class="hero-image-box">
-                <img src="https://images.squarespace-cdn.com/content/v1/55bf7973e4b0f28ddcfdf03b/64798587-1748-4fc7-82d4-5db46db08af6/CLAIM.png?format=750w" alt="Build Purpose Premium Claim Username">
-            </div>
-        </div>
-    </section>
-
-    <!-- INFINITE MARQUEE SLIDER WITH LOGOS -->
-    <section id="platforms" class="marquee-section">
-        <div class="marquee-heading" data-i18n="plat_title">
-            Usernames Prontos e Reivindicações em Múltiplas Plataformas:
-        </div>
-        <div class="marquee-container">
-            <div class="marquee-track">
-                <!-- Track 1 -->
-                <div class="platform-badge-card">
-                    <span class="platform-icon"><svg><use href="#icon-instagram"/></svg></span>
-                    <span>Instagram</span>
-                </div>
-                <div class="platform-badge-card">
-                    <span class="platform-icon"><svg><use href="#icon-tiktok"/></svg></span>
-                    <span>TikTok</span>
-                </div>
-                <div class="platform-badge-card">
-                    <span class="platform-icon"><svg><use href="#icon-telegram"/></svg></span>
-                    <span>Telegram</span>
-                </div>
-                <div class="platform-badge-card">
-                    <span class="platform-icon"><svg><use href="#icon-x"/></svg></span>
-                    <span>X (Twitter)</span>
-                </div>
-                <div class="platform-badge-card">
-                    <span class="platform-icon"><svg><use href="#icon-youtube"/></svg></span>
-                    <span>YouTube</span>
-                </div>
-                <div class="platform-badge-card">
-                    <span class="platform-icon"><svg><use href="#icon-discord"/></svg></span>
-                    <span>Discord</span>
-                </div>
-                <div class="platform-badge-card">
-                    <span class="platform-icon"><svg><use href="#icon-snapchat"/></svg></span>
-                    <span>Snapchat</span>
-                </div>
-
-                <!-- Duplicate Track for Seamless Loop -->
-                <div class="platform-badge-card">
-                    <span class="platform-icon"><svg><use href="#icon-instagram"/></svg></span>
-                    <span>Instagram</span>
-                </div>
-                <div class="platform-badge-card">
-                    <span class="platform-icon"><svg><use href="#icon-tiktok"/></svg></span>
-                    <span>TikTok</span>
-                </div>
-                <div class="platform-badge-card">
-                    <span class="platform-icon"><svg><use href="#icon-telegram"/></svg></span>
-                    <span>Telegram</span>
-                </div>
-                <div class="platform-badge-card">
-                    <span class="platform-icon"><svg><use href="#icon-x"/></svg></span>
-                    <span>X (Twitter)</span>
-                </div>
-                <div class="platform-badge-card">
-                    <span class="platform-icon"><svg><use href="#icon-youtube"/></svg></span>
-                    <span>YouTube</span>
-                </div>
-                <div class="platform-badge-card">
-                    <span class="platform-icon"><svg><use href="#icon-discord"/></svg></span>
-                    <span>Discord</span>
-                </div>
-                <div class="platform-badge-card">
-                    <span class="platform-icon"><svg><use href="#icon-snapchat"/></svg></span>
-                    <span>Snapchat</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Highlight: Telegram Channel Table Announcement -->
-    <section id="available-list" class="container">
-        <div class="card-box" style="padding: 36px 32px; border-color: var(--accent-black); text-align: center;">
-            <span class="badge badge-dark" style="margin-bottom: 14px;" data-i18n="tlg_badge">Tabela de Ativos em Tempo Real</span>
-            <h2 style="font-size: 28px; font-weight: 800; margin-bottom: 12px; color: var(--accent-black);" data-i18n="tlg_title">A Tabela Completa de Usernames Disponíveis está no Telegram!</h2>
-            <p style="color: var(--text-secondary); max-width: 760px; margin: 0 auto 24px; font-size: 15.5px; line-height: 1.6;" data-i18n="tlg_desc">
-                Possuímos uma lista com diversos usernames à pronta entrega variando de <strong>$500 a $50.000 USD</strong>. Acesse nosso canal oficial para visualizar a lista atualizada de 2, 3 e 4 letras, palavras raras e handles corporativos para <svg style="width:16px; height:16px; fill:currentColor; display:inline-block; vertical-align:-2px;"><use href="#icon-instagram"/></svg> Instagram, <svg style="width:16px; height:16px; fill:currentColor; display:inline-block; vertical-align:-2px;"><use href="#icon-tiktok"/></svg> TikTok, <svg style="width:16px; height:16px; fill:currentColor; display:inline-block; vertical-align:-2px;"><use href="#icon-telegram"/></svg> Telegram, <svg style="width:16px; height:16px; fill:currentColor; display:inline-block; vertical-align:-2px;"><use href="#icon-x"/></svg> X, <svg style="width:16px; height:16px; fill:currentColor; display:inline-block; vertical-align:-2px;"><use href="#icon-youtube"/></svg> YouTube, <svg style="width:16px; height:16px; fill:currentColor; display:inline-block; vertical-align:-2px;"><use href="#icon-discord"/></svg> Discord e <svg style="width:16px; height:16px; fill:currentColor; display:inline-block; vertical-align:-2px;"><use href="#icon-snapchat"/></svg> Snapchat.
-            </p>
-            <a href="https://t.me/buildpurpose" target="_blank" class="btn">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><use href="#icon-telegram"/></svg>
-                <span>t.me/buildpurpose</span>
-            </a>
-        </div>
-    </section>
-
-    <!-- Payment Methods Highlight Banner -->
-    <section class="container">
-        <div class="payment-highlight">
-            <span class="badge" style="margin-bottom: 10px;" data-i18n="pay_badge">Pagamentos Aceitos</span>
-            <h3 style="font-size: 25px; font-weight: 800; color: var(--accent-black);" data-i18n="pay_title">Meios de Pagamento Seguros e Globais</h3>
-            <p style="color: var(--text-secondary); font-size: 14.5px; margin-top: 6px;" data-i18n="pay_sub">
-                Para total segurança, praticidade e agilidade internacional, aceitamos pagamentos em criptomoedas e moedas virtuais com liquidação imediata:
-            </p>
-            <div class="payment-tags">
-                <span class="payment-tag">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 14.5h-2v-1h2v1zm1.5-4.5c0 .828-.672 1.5-1.5 1.5h-2v1.5h-2v-6h4c.828 0 1.5.672 1.5 1.5z"/></svg>
-                    USDT (TRC20 / ERC20)
-                </span>
-                <span class="payment-tag">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L4.5 12 12 24l7.5-12L12 0zm0 4.5l5 8-5 3.5-5-3.5 5-8z"/></svg>
-                    CRIPTOMOEDAS (BTC, ETH, SOL)
-                </span>
-                <span class="payment-tag">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-                    MOEDAS VIRTUAIS & ESCROW
-                </span>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works & Swap Process Section -->
-    <section id="how-it-works" class="section-padding container">
-        <h2 class="section-title text-center" data-i18n="how_title">Como Funciona o Processo & Transferência SWAP</h2>
-        <p class="section-subtitle text-center" data-i18n="how_sub">Entenda passo a passo como garantimos entrega instantânea e transferência segura do seu novo @username:</p>
-        
-        <div class="process-list">
-            <div class="card-box process-card">
-                <div class="process-number">1</div>
-                <div class="process-text" data-i18n="proc_1">
-                    <strong>Escolha do Ativo ou Solicitação:</strong> Escolha um username pronto disponível na nossa lista do Telegram ou envie um pedido de reivindicação de conta inativa para nosso e-mail direto <a href="https://mail.google.com/mail/?view=cm&fs=1&to=iii@email.com" target="_blank" style="color: var(--accent-black); font-weight: 700;">iii@email.com</a>.
-                </div>
-            </div>
-
-            <div class="card-box process-card">
-                <div class="process-number">2</div>
-                <div class="process-text" data-i18n="proc_2">
-                    <strong>Pagamento Rápido em Crypto:</strong> O processo para utilizar um username comprado da lista é <strong>INSTANTÂNEO</strong> logo após a confirmação do pagamento em USDT / Criptomoedas.
-                </div>
-            </div>
-
-            <div class="card-box process-card">
-                <div class="process-number">3</div>
-                <div class="process-text" data-i18n="proc_3">
-                    <strong>Acesso Direto à Conta:</strong> Ao adquirir um username pronto, fornecemos as credenciais de acesso direto e seguro à conta proprietária do @username em qualquer plataforma (<svg style="width:14px; height:14px; fill:currentColor; display:inline-block; vertical-align:-1px;"><use href="#icon-instagram"/></svg> Instagram, <svg style="width:14px; height:14px; fill:currentColor; display:inline-block; vertical-align:-1px;"><use href="#icon-tiktok"/></svg> TikTok, <svg style="width:14px; height:14px; fill:currentColor; display:inline-block; vertical-align:-1px;"><use href="#icon-x"/></svg> X, <svg style="width:14px; height:14px; fill:currentColor; display:inline-block; vertical-align:-1px;"><use href="#icon-youtube"/></svg> YouTube...).
-                </div>
-            </div>
-
-            <div class="card-box process-card">
-                <div class="process-number">4</div>
-                <div class="process-text" data-i18n="proc_4">
-                    <strong>Transferência via Técnica SWAP (Serviço Opcional):</strong> Além de enviar o acesso da conta, executamos a transferência direta do @username para a conta de sua preferência através de técnica SWAP avançada (cobramos um valor adicional por este procedimento técnico).
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Rare Emails Section -->
-    <section id="rare-emails" class="container">
-        <div class="rare-email-card">
+    <!-- SECTION 1: HERO -->
+    <section class="section-light">
+        <div class="wrapper hero-grid">
             <div>
-                <span class="badge badge-dark" style="margin-bottom: 12px;" data-i18n="email_badge">Exclusividade Digital</span>
-                <h2 style="font-size: 27px; font-weight: 800; margin-bottom: 12px; color: var(--accent-black);" data-i18n="email_title">Venda de E-mails Raros @email.com e @mail.com</h2>
-                <p style="color: var(--text-secondary); font-size: 14.5px; line-height: 1.6;" data-i18n="email_desc">
-                    Além de usernames premium, comercializamos endereços de e-mail ultra curtos, nomes próprios e handles comerciais nos domínios exclusivos <strong>@email.com</strong> e <strong>@mail.com</strong>. Destaque sua autoridade e presença corporativa no mercado global.
-                </p>
-            </div>
-            <div style="text-align: center;">
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=iii@email.com" target="_blank" class="email-direct-btn">
-                    ✉ Consultar E-mails Disponíveis
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Client Case Studies Carousel Section -->
-    <section id="case-studies" class="section-padding container">
-        <h2 class="section-title text-center" data-i18n="cases_title">Casos de Sucesso dos Clientes</h2>
-        <p class="section-subtitle text-center" data-i18n="cases_sub">Confira algumas de nossas entregas reais e resultados alcançados:</p>
-
-        <div class="carousel-container-outer">
-            <div class="carousel-viewport">
-                <div class="carousel-track" id="carouselTrack">
-                    <div class="carousel-slide">
-                        <img src="https://images.squarespace-cdn.com/content/v1/55bf7973e4b0f28ddcfdf03b/1731021680005-4J4CYV1K7KZJ2X4W7IUC/Screenshot%2B2024-11-03%2Bat%2B9.11.46%E2%80%AFAM.png?format=750w" alt="Caso de Sucesso 1">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.squarespace-cdn.com/content/v1/55bf7973e4b0f28ddcfdf03b/1705001315658-7JY0MDBV776U46CFXIEU/1.png?format=750w" alt="Caso de Sucesso 2">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.squarespace-cdn.com/content/v1/55bf7973e4b0f28ddcfdf03b/1709080305029-CZYZJ2AYKEAW605TB9HR/7.png?format=750w" alt="Caso de Sucesso 3">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.squarespace-cdn.com/content/v1/55bf7973e4b0f28ddcfdf03b/1712609760835-16OOVWNBZA1AUAE2WCHR/Untitled+%28YouTube+Thumbnail%29+%281%29.png?format=750w" alt="Caso de Sucesso 4">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.squarespace-cdn.com/content/v1/55bf7973e4b0f28ddcfdf03b/1732308087559-KC75IQFIJVN00V20VCSM/12.png?format=750w" alt="Caso de Sucesso 5">
-                    </div>
+                <p style="color: var(--accent); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;" data-i18n="hero_badge">Portfólio Exclusivo & Serviços Meta</p>
+                <h1 data-i18n="hero_title">Usernames Únicos, Curtos e Reivindicações Premium</h1>
+                <ul class="hero-features">
+                    <li data-i18n="feat_1">Usernames ultra raros de 2, 3 e 4 letras</li>
+                    <li data-i18n="feat_2">Palavras raras e nomes marcantes para empresas e marcas fortes</li>
+                    <li data-i18n="feat_3">Serviço de reivindicação de @usernames inativos em múltiplas redes</li>
+                    <li data-i18n="feat_4">Transferência via técnica SWAP para a sua conta preferida</li>
+                    <li data-i18n="feat_5">Vendas exclusivas de domínios de e-mail raros @email.com e @mail.com</li>
+                </ul>
+                <div class="btn-group">
+                    <a href="https://t.me/buildpurpose" target="_blank" class="btn-primary" data-i18n="btn_telegram_list">
+                        <svg width="20" height="20" fill="currentColor"><use href="#icon-telegram"/></svg> <span>VER TABELA NO TELEGRAM</span>
+                    </a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=iii@email.com" target="_blank" class="btn-secondary" data-i18n="btn_email_direct">Falar por E-mail</a>
                 </div>
             </div>
-
-            <div class="carousel-nav">
-                <button class="carousel-btn" onclick="moveCarousel(-1)">❮</button>
-                <div class="carousel-dots" id="carouselDots">
-                    <div class="carousel-dot active" onclick="goToSlide(0)"></div>
-                    <div class="carousel-dot" onclick="goToSlide(1)"></div>
-                    <div class="carousel-dot" onclick="goToSlide(2)"></div>
-                    <div class="carousel-dot" onclick="goToSlide(3)"></div>
-                    <div class="carousel-dot" onclick="goToSlide(4)"></div>
-                </div>
-                <button class="carousel-btn" onclick="moveCarousel(1)">❯</button>
+            <div>
+                <img src="https://images.squarespace-cdn.com/content/v1/55bf7973e4b0f28ddcfdf03b/64798587-1748-4fc7-82d4-5db46db08af6/CLAIM.png?format=750w" alt="Build Purpose Claim Username" class="hero-image">
             </div>
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="section-padding container">
-        <h2 class="section-title text-center" data-i18n="price_title">Valores & Serviços</h2>
-        <p class="section-subtitle text-center" data-i18n="price_sub">Visão geral da estrutura de valores para compras de estoque e pedidos de reivindicação:</p>
-
-        <div class="pricing-grid">
-            <div class="card-box pricing-card">
-                <div>
-                    <span class="badge" data-i18n="price_t1_badge">Lista à Pronta Entrega</span>
-                    <h3 style="font-size: 22px; font-weight: 800; margin-top: 10px;" data-i18n="price_t1_title">Usernames Disponíveis</h3>
-                    <div class="pricing-price">$500 – $50.000 <span style="font-size: 16px; color: var(--text-muted);">USD</span></div>
-                    <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 22px; line-height: 1.6;" data-i18n="price_t1_desc">
-                        Nomes de 2, 3 e 4 letras, palavras raras e handles de alto impacto corporativo para Instagram, TikTok, X e mais. Tabela completa no Telegram.
-                    </p>
-                </div>
-                <a href="https://t.me/buildpurpose" target="_blank" class="btn" style="width: 100%;" data-i18n="btn_view_list">Ver Lista no Telegram</a>
-            </div>
-
-            <div class="card-box pricing-card" style="border-color: var(--accent-black);">
-                <div>
-                    <span class="badge badge-dark" data-i18n="price_t2_badge">Serviço Sob Demanda</span>
-                    <h3 style="font-size: 22px; font-weight: 800; margin-top: 10px;" data-i18n="price_t2_title">Reivindicar @Username Inativo</h3>
-                    <div class="pricing-price">+ $5.000 <span style="font-size: 16px; color: var(--text-muted);">USD</span></div>
-                    <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 22px; line-height: 1.6;" data-i18n="price_t2_desc">
-                        Serviço executado via parceiros oficiais para reivindicação de contas inativas ou banidas nas redes. O custo varia acima de 5 mil dólares de acordo com a complexidade.
-                    </p>
-                </div>
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=iii@email.com" target="_blank" class="btn" style="width: 100%;" data-i18n="btn_request_claim">Solicitar Cotação por E-mail</a>
-            </div>
-        </div>
-
-        <!-- Direct Email Highlight Contact -->
-        <div class="text-center" style="margin-top: 38px;">
-            <p style="font-size: 15px; color: var(--text-secondary);">
-                Entre em contato diretamente através do e-mail oficial:
-            </p>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=iii@email.com" target="_blank" style="font-size: 21px; font-weight: 800; color: var(--accent-black); text-decoration: underline; display: inline-block; margin-top: 6px;">
-                ✉ iii@email.com
-            </a>
-        </div>
-    </section>
-
-    <!-- Quote Request Form -->
-    <section id="request-quote" class="section-padding container">
-        <div class="card-box form-wrapper">
-            <h2 class="section-title text-center" style="margin-bottom: 8px;" data-i18n="form_title">Solicitar Atendimento</h2>
-            <p class="text-center" style="color: var(--text-secondary); font-size: 14px; margin-bottom: 28px;" data-i18n="form_sub">
-                Preencha os dados abaixo para receber retorno direto na sua caixa de e-mail.
-            </p>
-
-            <form onsubmit="event.preventDefault(); window.open('https://mail.google.com/mail/?view=cm&fs=1&to=iii@email.com', '_blank');">
-                <div class="form-group">
-                    <label class="form-label" data-i18n="form_name">Nome Completo</label>
-                    <div class="form-group-row">
-                        <input type="text" class="form-input" placeholder="Primeiro Nome" required>
-                        <input type="text" class="form-input" placeholder="Sobrenome" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" data-i18n="form_email">Seu E-mail de Contato (Obrigatório)</label>
-                    <input type="email" class="form-input" placeholder="seuemail@dominio.com" required>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" data-i18n="form_interest">Qual serviço você procura?</label>
-                    <label class="radio-option">
-                        <input type="radio" name="service_type" required checked>
-                        <span data-i18n="opt_1">Comprar Username Disponível da Tabela do Telegram ($500 - $50k USD)</span>
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="service_type">
-                        <span data-i18n="opt_2">Reivindicar Username Inativo (+ $5.000 USD)</span>
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="service_type">
-                        <span data-i18n="opt_3">Serviço de Transferência SWAP de Username para minha conta</span>
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="service_type">
-                        <span data-i18n="opt_4">Comprar E-mail Raro @email.com / @mail.com</span>
-                    </label>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" data-i18n="form_target">@Username ou E-mail Desejado</label>
-                    <input type="text" class="form-input" placeholder="@exemplo ou nome@email.com" required>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" data-i18n="form_msg">Detalhes Adicionais & Plataforma</label>
-                    <textarea class="form-textarea" placeholder="Descreva sua solicitação e a plataforma (Instagram, TikTok, Telegram, X, YouTube, Discord, Snapchat...)..."></textarea>
-                </div>
-
-                <button type="submit" class="btn" style="width: 100%;" data-i18n="form_submit">ENVIAR E-MAIL</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- FAQ Accordion -->
-    <section id="faq" class="section-padding container">
-        <h2 class="section-title text-center" data-i18n="faq_title">Perguntas Frequentes (FAQ)</h2>
-        <div class="faq-accordion" style="margin-top: 24px;">
-            
-            <div class="card-box faq-item open">
-                <div class="faq-header" onclick="toggleFaq(this)">
-                    <span data-i18n="faq_q1">Onde vejo os usernames que estão disponíveis para entrega imediata?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-body" data-i18n="faq_a1">
-                    Toda a nossa tabela de usernames prontos de 2, 3 e 4 letras, nomes raros e marcas corporativas fica atualizada diretamente em nosso canal do Telegram (t.me/buildpurpose).
-                </div>
-            </div>
-
-            <div class="card-box faq-item">
-                <div class="faq-header" onclick="toggleFaq(this)">
-                    <span data-i18n="faq_q2">Como funciona o processo de entrega e a técnica SWAP?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-body" data-i18n="faq_a2">
-                    A entrega das credenciais e do acesso direto da conta é instantânea após o pagamento em crypto. Caso você prefira mover o @username diretamente para a sua conta pessoal ou corporativa existente, realizamos o serviço de transferência via técnica SWAP (cobrado valor adicional por essa operação).
-                </div>
-            </div>
-
-            <div class="card-box faq-item">
-                <div class="faq-header" onclick="toggleFaq(this)">
-                    <span data-i18n="faq_q3">Quanto custa para reivindicar um username inativo?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-body" data-i18n="faq_a3">
-                    O serviço de reivindicação de conta inativa é um procedimento de alta complexidade técnica e jurídica. Os valores de investimento iniciam a partir de $5.000 USD.
-                </div>
-            </div>
-
-            <div class="card-box faq-item">
-                <div class="faq-header" onclick="toggleFaq(this)">
-                    <span data-i18n="faq_q4">Quais formas de pagamento são aceitas?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-body" data-i18n="faq_a4">
-                    Aceitamos USDT (TRC20/ERC20), Criptomoedas (Bitcoin, Ethereum, Solana) e moedas virtuais com confirmação rápida para liberar a imediata transferência dos ativos.
-                </div>
-            </div>
-
-            <div class="card-box faq-item">
-                <div class="faq-header" onclick="toggleFaq(this)">
-                    <span data-i18n="faq_q5">Quais redes sociais e domínios de e-mail vocês atendem?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-body" data-i18n="faq_a5">
-                    Trabalhamos com Instagram, TikTok, Telegram, X (Twitter), YouTube, Discord e Snapchat, além da venda exclusiva de e-mails nos domínios raros @email.com e @mail.com.
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Bottom CTA Banner -->
-    <div class="container" style="margin-top: 30px;">
-        <div class="card-box footer-banner">
-            <h2 style="font-size: 26px; font-weight: 800; margin-bottom: 12px; color: var(--accent-black);" data-i18n="banner_title">Atendimento Direto & Tabela Atualizada</h2>
-            <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 24px; font-size: 15px;" data-i18n="banner_desc">
-                Confira nossa tabela no Telegram ou entre em contato direto pelo nosso e-mail oficial.
-            </p>
-            <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
-                <a href="https://t.me/buildpurpose" target="_blank" class="btn">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><use href="#icon-telegram"/></svg>
-                    <span>Telegram: t.me/buildpurpose</span>
-                </a>
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=iii@email.com" target="_blank" class="btn btn-outline">
-                    ✉ iii@email.com
-                </a>
-            </div>
+    <!-- MARQUEE BAR -->
+    <div class="marquee-wrapper">
+        <div class="marquee-track">
+            <div class="marquee-item"><svg><use href="#icon-instagram"/></svg> Instagram</div>
+            <div class="marquee-item"><svg><use href="#icon-tiktok"/></svg> TikTok</div>
+            <div class="marquee-item"><svg><use href="#icon-telegram"/></svg> Telegram</div>
+            <div class="marquee-item"><svg><use href="#icon-x"/></svg> X (Twitter)</div>
+            <div class="marquee-item"><svg><use href="#icon-youtube"/></svg> YouTube</div>
+            <div class="marquee-item"><svg><use href="#icon-discord"/></svg> Discord</div>
+            <div class="marquee-item"><svg><use href="#icon-snapchat"/></svg> Snapchat</div>
+            <!-- Duplicated for smooth infinite scroll -->
+            <div class="marquee-item"><svg><use href="#icon-instagram"/></svg> Instagram</div>
+            <div class="marquee-item"><svg><use href="#icon-tiktok"/></svg> TikTok</div>
+            <div class="marquee-item"><svg><use href="#icon-telegram"/></svg> Telegram</div>
+            <div class="marquee-item"><svg><use href="#icon-x"/></svg> X (Twitter)</div>
+            <div class="marquee-item"><svg><use href="#icon-youtube"/></svg> YouTube</div>
+            <div class="marquee-item"><svg><use href="#icon-discord"/></svg> Discord</div>
+            <div class="marquee-item"><svg><use href="#icon-snapchat"/></svg> Snapchat</div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="container">
-        <p>&copy; 2026 Build Purpose. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=iii@email.com" target="_blank">E-mail: iii@email.com</a>
-            <span>•</span>
-            <a href="https://t.me/buildpurpose" target="_blank">Telegram: t.me/buildpurpose</a>
+    <!-- SECTION 2: TELEGRAM CTA & PAYMENTS -->
+    <section class="section-dark">
+        <div class="wrapper text-center" style="max-width: 820px;">
+            <h2 data-i18n="tlg_title">A Tabela Completa de Usernames Disponíveis está no Telegram!</h2>
+            <p data-i18n="tlg_desc">Possuímos uma lista com diversos usernames à pronta entrega variando de $500 a $50.000 USD. Acesse nosso canal oficial para visualizar a lista atualizada de 2, 3 e 4 letras, palavras raras e handles corporativos para Instagram, TikTok, Telegram, X, YouTube, Discord e Snapchat.</p>
+            <a href="https://t.me/buildpurpose" target="_blank" class="btn-primary btn-white" style="margin-bottom: 40px;">t.me/buildpurpose</a>
+            
+            <hr style="border: 0; border-top: 1px solid #27272a; margin: 40px 0;">
+            
+            <h3 data-i18n="pay_title">Meios de Pagamento Seguros e Globais</h3>
+            <p data-i18n="pay_sub">Para total segurança, praticidade e agilidade internacional, aceitamos pagamentos em criptomoedas e moedas virtuais com liquidação imediata: USDT (TRC20 / ERC20), Criptomoedas (BTC, ETH, SOL) e liquidação via Escrow.</p>
+        </div>
+    </section>
+
+    <!-- SECTION 3: HOW IT WORKS (Vertical Flow) -->
+    <section class="section-light">
+        <div class="wrapper">
+            <div class="text-center">
+                <h2 data-i18n="how_title">Como Funciona o Processo & Transferência SWAP</h2>
+                <p data-i18n="how_sub">Entenda passo a passo como garantimos entrega instantânea e transferência segura do seu novo @username:</p>
+            </div>
+            
+            <div class="steps-container">
+                <div class="step-row">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 data-i18n="proc_1_t">Escolha do Ativo ou Solicitação</h3>
+                        <p data-i18n="proc_1">Escolha um username pronto disponível na nossa lista do Telegram ou envie um pedido de reivindicação de conta inativa para nosso e-mail direto iii@email.com.</p>
+                    </div>
+                </div>
+                <div class="step-row">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 data-i18n="proc_2_t">Pagamento Rápido em Crypto</h3>
+                        <p data-i18n="proc_2">O processo para utilizar um username comprado da lista é INSTANTÂNEO logo após a confirmação do pagamento em USDT / Criptomoedas.</p>
+                    </div>
+                </div>
+                <div class="step-row">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 data-i18n="proc_3_t">Acesso Direto à Conta</h3>
+                        <p data-i18n="proc_3">Ao adquirir um username pronto, fornecemos as credenciais de acesso direto e seguro à conta proprietária do @username em qualquer plataforma.</p>
+                    </div>
+                </div>
+                <div class="step-row">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 data-i18n="proc_4_t">Transferência via Técnica SWAP (Serviço Opcional)</h3>
+                        <p data-i18n="proc_4">Além de enviar o acesso da conta, executamos a transferência direta do @username para a conta de sua preferência através de técnica SWAP avançada (cobramos um valor adicional por este procedimento técnico).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: RARE EMAILS & CAROUSEL -->
+    <section class="section-gray">
+        <div class="wrapper text-center">
+            <h2 data-i18n="email_title">Venda de E-mails Raros @email.com e @mail.com</h2>
+            <p data-i18n="email_desc" style="max-width: 760px; margin: 0 auto 32px;">Além de usernames premium, comercializamos endereços de e-mail ultra curtos, nomes próprios e handles comerciais nos domínios exclusivos @email.com e @mail.com. Destaque sua autoridade e presença corporativa no mercado global.</p>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=iii@email.com" target="_blank" class="btn-primary" data-i18n="btn_email_direct">Consultar E-mails Disponíveis</a>
+
+            <h2 style="margin-top: 80px;" data-i18n="cases_title">Casos de Sucesso dos Clientes</h2>
+            <p data-i18n="cases_sub" style="max-width: 600px; margin: 0 auto 20px;">Confira algumas de nossas entregas reais e resultados alcançados:</p>
+            <div class="carousel">
+                <div class="carousel-track" id="cTrack">
+                    <div class="carousel-slide"><img src="https://images.squarespace-cdn.com/content/v1/55bf7973e4b0f28ddcfdf03b/1731021680005-4J4CYV1K7KZJ2X4W7IUC/Screenshot%2B2024-11-03%2Bat%2B9.11.46%E2%80%AFAM.png?format=750w" alt="Caso 1"></div>
+                    <div class="carousel-slide"><img src="https://images.squarespace-cdn.com/content/v1/55bf7973e4b0f28ddcfdf03b/1705001315658-7JY0MDBV776U46CFXIEU/1.png?format=750w" alt="Caso 2"></div>
+                    <div class="carousel-slide"><img src="https://images.squarespace-cdn.com/content/v1/55bf7973e4b0f28ddcfdf03b/1709080305029-CZYZJ2AYKEAW605TB9HR/7.png?format=750w" alt="Caso 3"></div>
+                    <div class="carousel-slide"><img src="https://images.squarespace-cdn.com/content/v1/55bf7973e4b0f28ddcfdf03b/1712609760835-16OOVWNBZA1AUAE2WCHR/Untitled+%28YouTube+Thumbnail%29+%281%29.png?format=750w" alt="Caso 4"></div>
+                    <div class="carousel-slide"><img src="https://images.squarespace-cdn.com/content/v1/55bf7973e4b0f28ddcfdf03b/1732308087559-KC75IQFIJVN00V20VCSM/12.png?format=750w" alt="Caso 5"></div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="c-btn" onclick="moveC(-1)">❮</button>
+                    <button class="c-btn" onclick="moveC(1)">❯</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: PRICING -->
+    <section class="section-light">
+        <div class="wrapper">
+            <div class="text-center">
+                <h2 data-i18n="price_title">Valores & Serviços</h2>
+                <p data-i18n="price_sub">Visão geral da estrutura de valores para compras de estoque e pedidos de reivindicação:</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="price-card highlight">
+                    <h3 data-i18n="price_t1_title">Usernames Disponíveis</h3>
+                    <div class="price-tag">$500 – $50k <span style="font-size: 1rem; color: var(--text-mute);">USD</span></div>
+                    <p data-i18n="price_t1_desc">Nomes de 2, 3 e 4 letras, palavras raras e handles de alto impacto corporativo para Instagram, TikTok, X e mais. Tabela completa no Telegram.</p>
+                    <a href="https://t.me/buildpurpose" target="_blank" class="btn-primary" style="width: 100%;" data-i18n="btn_view_list">Ver Lista no Telegram</a>
+                </div>
+                
+                <div class="price-card">
+                    <h3 data-i18n="price_t2_title">Reivindicar @Username Inativo</h3>
+                    <div class="price-tag">+ $5.000 <span style="font-size: 1rem; color: var(--text-mute);">USD</span></div>
+                    <p data-i18n="price_t2_desc">Serviço executado via parceiros oficiais para reivindicação de contas inativas ou banidas nas redes. O custo varia acima de 5 mil dólares de acordo com a complexidade.</p>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=iii@email.com" target="_blank" class="btn-secondary" style="width: 100%;" data-i18n="btn_request_claim">Solicitar Cotação por E-mail</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: INSTAGRAM BAN REMOVAL (MOVED TO THE END) -->
+    <section class="section-gray">
+        <div class="wrapper text-center">
+            <div style="max-width: 800px; margin: 0 auto; background: var(--brand-white); border: 2px solid var(--brand-black); border-radius: 16px; padding: 40px; box-shadow: 6px 6px 0px var(--brand-black);">
+                <p style="color: var(--accent); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;" data-i18n="unban_badge">Serviço Especializado Meta</p>
+                <h2 data-i18n="unban_title">Remoção de Ban de Contas do Instagram</h2>
+                <p data-i18n="unban_desc" style="margin-bottom: 24px;">Removemos banimentos de contas do Instagram permanentemente desativadas ou que ainda não tiveram apelações enviadas.</p>
+                <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 28px; font-weight: 700; font-size: 15px;">
+                    <div>⏱ <span data-i18n="unban_time">Prazo: 24h a 48 horas</span></div>
+                    <div><span data-i18n="unban_price">Investimento: + $8.000 USD</span></div>
+                </div>
+                <a href="https://t.me/buildpurpose" target="_blank" class="btn-primary" data-i18n="btn_telegram_unban">
+                    <svg width="20" height="20" fill="currentColor"><use href="#icon-telegram"/></svg> <span>SOLICITAR VIA TELEGRAM</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: FAQ & FORM -->
+    <section class="section-light">
+        <div class="wrapper">
+            
+            <div class="text-center">
+                <h2 data-i18n="faq_title">Perguntas Frequentes (FAQ)</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item active">
+                    <button class="faq-question" onclick="toggleF(this)" data-i18n="faq_q1">Onde vejo os usernames que estão disponíveis para entrega imediata?</button>
+                    <div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq_a1">Toda a nossa tabela de usernames prontos de 2, 3 e 4 letras, nomes raros e marcas corporativas fica atualizada diretamente em nosso canal do Telegram (t.me/buildpurpose).</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleF(this)" data-i18n="faq_q2">Como funciona o processo de entrega e a técnica SWAP?</button>
+                    <div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq_a2">A entrega das credenciais e do acesso direto da conta é instantânea após o pagamento em crypto. Caso você prefira mover o @username diretamente para a sua conta pessoal ou corporativa existente, realizamos o serviço de transferência via técnica SWAP (cobramos um valor adicional por essa operação).</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleF(this)" data-i18n="faq_q3">Quanto custa para reivindicar um username inativo?</button>
+                    <div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq_a3">O serviço de reivindicação de conta inativa é um procedimento de alta complexidade técnica e jurídica. Os valores de investimento iniciam a partir de $5.000 USD.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleF(this)" data-i18n="faq_q4">Quais formas de pagamento são aceitas?</button>
+                    <div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq_a4">Aceitamos USDT (TRC20/ERC20), Criptomoedas (Bitcoin, Ethereum, Solana) e moedas virtuais com confirmação rápida para liberar a imediata transferência dos ativos.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleF(this)" data-i18n="faq_q5">Quais redes sociais e domínios de e-mail vocês atendem?</button>
+                    <div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq_a5">Trabalhamos com Instagram, TikTok, Telegram, X (Twitter), YouTube, Discord e Snapchat, além da venda exclusiva de e-mails nos domínios raros @email.com e @mail.com.</div></div>
+                </div>
+            </div>
+
+            <div style="margin-top: 80px;">
+                <div class="text-center">
+                    <h2 data-i18n="form_title">Solicitar Atendimento</h2>
+                    <p data-i18n="form_sub" style="max-width: 500px; margin: 0 auto 24px;">Preencha os dados abaixo para receber retorno direto na sua caixa de e-mail.</p>
+                </div>
+                <form class="contact-form" onsubmit="submitForm(event)">
+                    <div class="form-group">
+                        <label class="form-label" data-i18n="form_name">Nome Completo</label>
+                        <input type="text" id="fieldName" class="form-control" placeholder="Seu nome ou empresa" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" data-i18n="form_email">Seu E-mail de Contato (Obrigatório)</label>
+                        <input type="email" id="fieldEmail" class="form-control" placeholder="seuemail@dominio.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" data-i18n="form_interest">Qual serviço você procura?</label>
+                        <div class="form-radio-group">
+                            <label class="radio-label"><input type="radio" name="srv" checked> <span data-i18n="opt_1">Comprar Username Disponível da Tabela do Telegram ($500 - $50k USD)</span></label>
+                            <label class="radio-label"><input type="radio" name="srv"> <span data-i18n="opt_2">Reivindicar Username Inativo (+ $5.000 USD)</span></label>
+                            <label class="radio-label"><input type="radio" name="srv"> <span data-i18n="opt_3">Remoção de Ban de Conta do Instagram (+ $8.000 USD)</span></label>
+                            <label class="radio-label"><input type="radio" name="srv"> <span data-i18n="opt_4">Serviço de Transferência SWAP de Username para minha conta</span></label>
+                            <label class="radio-label"><input type="radio" name="srv"> <span data-i18n="opt_5">Comprar E-mail Raro @email.com / @mail.com</span></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" data-i18n="form_target">@Username ou E-mail Desejado</label>
+                        <input type="text" id="fieldTarget" class="form-control" placeholder="@exemplo ou nome@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" data-i18n="form_msg">Detalhes Adicionais & Plataforma</label>
+                        <textarea id="fieldMsg" class="form-control form-textarea" placeholder="Descreva sua solicitação e a plataforma (Instagram, TikTok, Telegram, X, YouTube, Discord, Snapchat...)..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%;" data-i18n="form_submit">ENVIAR E-MAIL</button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="wrapper">
+            <h3 style="margin-bottom: 16px; letter-spacing: 1px;"><img src="images/buildpurpose.png" alt="Build Purpose" style="height: 28px; width: auto; vertical-align: middle; filter: brightness(0) invert(1);"></h3>
+            <p>iii@email.com &nbsp;|&nbsp; t.me/buildpurpose</p>
+            <p style="margin-top: 24px; font-size: 13px;">&copy; 2026 Build Purpose. Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <!-- JavaScript for Carousel, Accordion & i18n -->
     <script>
         const translations = {
             pt: {
-                nav_available: "Nomes Disponíveis",
-                nav_platforms: "Plataformas",
-                nav_how: "Como Funciona",
-                nav_emails: "E-mails Raros",
-                nav_pricing: "Valores",
-                nav_faq: "FAQ",
                 hero_badge: "Portfólio Exclusivo & Serviços Meta",
                 hero_title: "Usernames Únicos, Curtos e Reivindicações Premium",
                 feat_1: "Usernames ultra raros de 2, 3 e 4 letras",
@@ -1395,67 +584,48 @@
                 feat_5: "Vendas exclusivas de domínios de e-mail raros @email.com e @mail.com",
                 btn_telegram_list: "VER TABELA NO TELEGRAM",
                 btn_email_direct: "Falar por E-mail",
-                plat_title: "Usernames Prontos e Reivindicações em Múltiplas Plataformas:",
-                tlg_badge: "Tabela de Ativos em Tempo Real",
                 tlg_title: "A Tabela Completa de Usernames Disponíveis está no Telegram!",
                 tlg_desc: "Possuímos uma lista com diversos usernames à pronta entrega variando de $500 a $50.000 USD. Acesse nosso canal oficial para visualizar a lista atualizada de 2, 3 e 4 letras, palavras raras e handles corporativos para Instagram, TikTok, Telegram, X, YouTube, Discord e Snapchat.",
-                pay_badge: "Pagamentos Aceitos",
                 pay_title: "Meios de Pagamento Seguros e Globais",
-                pay_sub: "Para total segurança, praticidade e agilidade internacional, aceitamos pagamentos em criptomoedas e moedas virtuais com liquidação imediata:",
+                pay_sub: "Para total segurança, praticidade e agilidade internacional, aceitamos pagamentos em criptomoedas e moedas virtuais com liquidação imediata: USDT (TRC20 / ERC20), Criptomoedas (BTC, ETH, SOL) e liquidação via Escrow.",
+                unban_badge: "Serviço Especializado Meta",
+                unban_title: "Remoção de Ban de Contas do Instagram",
+                unban_desc: "Removemos banimentos de contas do Instagram permanentemente desativadas ou que ainda não tiveram apelações enviadas.",
+                unban_time: "Prazo: 24h a 48 horas",
+                unban_price: "Investimento: + $8.000 USD",
+                btn_telegram_unban: "SOLICITAR VIA TELEGRAM",
                 how_title: "Como Funciona o Processo & Transferência SWAP",
                 how_sub: "Entenda passo a passo como garantimos entrega instantânea e transferência segura do seu novo @username:",
-                proc_1: "Escolha um username pronto disponível na nossa lista do Telegram ou envie um pedido de reivindicação de conta inativa para iii@email.com.",
-                proc_2: "O processo para utilizar um username comprado da lista é INSTANTÂNEO logo após a confirmação do pagamento em USDT / Criptomoedas.",
-                proc_3: "Ao adquirir um username pronto, fornecemos as credenciais de acesso direto e seguro à conta proprietária do @username em qualquer plataforma.",
-                proc_4: "Além de enviar o acesso da conta, executamos a transferência direta do @username para a conta de sua preferência através de técnica SWAP avançada (cobrado valor adicional).",
-                email_badge: "Exclusividade Digital",
+                proc_1_t: "Escolha do Ativo ou Solicitação", proc_1: "Escolha um username pronto disponível na nossa lista do Telegram ou envie um pedido de reivindicação de conta inativa para nosso e-mail direto iii@email.com.",
+                proc_2_t: "Pagamento Rápido em Crypto", proc_2: "O processo para utilizar um username comprado da lista é INSTANTÂNEO logo após a confirmação do pagamento em USDT / Criptomoedas.",
+                proc_3_t: "Acesso Direto à Conta", proc_3: "Ao adquirir um username pronto, fornecemos as credenciais de acesso direto e seguro à conta proprietária do @username em qualquer plataforma.",
+                proc_4_t: "Transferência via Técnica SWAP (Serviço Opcional)", proc_4: "Além de enviar o acesso da conta, executamos a transferência direta do @username para a conta de sua preferência através de técnica SWAP avançada (cobramos um valor adicional por este procedimento técnico).",
                 email_title: "Venda de E-mails Raros @email.com e @mail.com",
-                email_desc: "Além de usernames premium, comercializamos endereços de e-mail ultra curtos, nomes próprios e handles comerciais nos domínios exclusivos @email.com e @mail.com.",
+                email_desc: "Além de usernames premium, comercializamos endereços de e-mail ultra curtos, nomes próprios e handles comerciais nos domínios exclusivos @email.com e @mail.com. Destaque sua autoridade e presença corporativa no mercado global.",
                 cases_title: "Casos de Sucesso dos Clientes",
                 cases_sub: "Confira algumas de nossas entregas reais e resultados alcançados:",
                 price_title: "Valores & Serviços",
                 price_sub: "Visão geral da estrutura de valores para compras de estoque e pedidos de reivindicação:",
-                price_t1_badge: "Lista à Pronta Entrega",
                 price_t1_title: "Usernames Disponíveis",
                 price_t1_desc: "Nomes de 2, 3 e 4 letras, palavras raras e handles de alto impacto corporativo para Instagram, TikTok, X e mais. Tabela completa no Telegram.",
                 btn_view_list: "Ver Lista no Telegram",
-                price_t2_badge: "Serviço Sob Demanda",
                 price_t2_title: "Reivindicar @Username Inativo",
-                price_t2_desc: "Serviço executado via parceiros oficiais para reivindicação de contas inativas. Custo inicial a partir de 5 mil dólares.",
+                price_t2_desc: "Serviço executado via parceiros oficiais para reivindicação de contas inativas ou banidas nas redes. O custo varia acima de 5 mil dólares de acordo com a complexidade.",
                 btn_request_claim: "Solicitar Cotação por E-mail",
+                faq_title: "Perguntas Frequentes (FAQ)",
+                faq_q1: "Onde vejo os usernames que estão disponíveis para entrega imediata?", faq_a1: "Toda a nossa tabela de usernames prontos de 2, 3 e 4 letras, nomes raros e marcas corporativas fica atualizada diretamente em nosso canal do Telegram (t.me/buildpurpose).",
+                faq_q2: "Como funciona o processo de entrega e a técnica SWAP?", faq_a2: "A entrega das credenciais e do acesso direto da conta é instantânea após o pagamento em crypto. Caso você prefira mover o @username diretamente para a sua conta pessoal ou corporativa existente, realizamos o serviço de transferência via técnica SWAP (cobramos um valor adicional por essa operação).",
+                faq_q3: "Quanto custa para reivindicar um username inativo?", faq_a3: "O serviço de reivindicação de conta inativa é um procedimento de alta complexidade técnica e jurídica. Os valores de investimento iniciam a partir de $5.000 USD.",
+                faq_q4: "Quais formas de pagamento são aceitas?", faq_a4: "Aceitamos USDT (TRC20/ERC20), Criptomoedas (Bitcoin, Ethereum, Solana) e moedas virtuais com confirmação rápida para liberar a imediata transferência dos ativos.",
+                faq_q5: "Quais redes sociais e domínios de e-mail vocês atendem?", faq_a5: "Trabalhamos com Instagram, TikTok, Telegram, X (Twitter), YouTube, Discord e Snapchat, além da venda exclusiva de e-mails nos domínios raros @email.com e @mail.com.",
                 form_title: "Solicitar Atendimento",
                 form_sub: "Preencha os dados abaixo para receber retorno direto na sua caixa de e-mail.",
-                form_name: "Nome Completo",
-                form_email: "Seu E-mail de Contato (Obrigatório)",
-                form_interest: "Qual serviço você procura?",
-                opt_1: "Comprar Username Disponível da Tabela do Telegram ($500 - $50k USD)",
-                opt_2: "Reivindicar Username Inativo (+ $5.000 USD)",
-                opt_3: "Serviço de Transferência SWAP de Username para minha conta",
-                opt_4: "Comprar E-mail Raro @email.com / @mail.com",
-                form_target: "@Username ou E-mail Desejado",
-                form_msg: "Detalhes Adicionais & Plataforma",
-                form_submit: "ENVIAR E-MAIL",
-                faq_title: "Perguntas Frequentes (FAQ)",
-                faq_q1: "Onde vejo os usernames que estão disponíveis para entrega imediata?",
-                faq_a1: "Toda a nossa tabela de usernames prontos fica atualizada diretamente em nosso canal do Telegram (t.me/buildpurpose).",
-                faq_q2: "Como funciona o processo de entrega e a técnica SWAP?",
-                faq_a2: "A entrega das credenciais é instantânea após o pagamento em crypto. Caso queira mover o @ para outra conta, fazemos via técnica SWAP (com taxa adicional).",
-                faq_q3: "Quanto custa para reivindicar um username inativo?",
-                faq_a3: "O serviço de reivindicação de conta inativa é um procedimento de alta complexidade. Os valores iniciam a partir de $5.000 USD.",
-                faq_q4: "Quais formas de pagamento são aceitas?",
-                faq_a4: "Aceitamos USDT, Criptomoedas (Bitcoin, Ethereum, Solana) e moedas virtuais.",
-                faq_q5: "Quais redes sociais e domínios de e-mail vocês atendem?",
-                faq_a5: "Atendemos Instagram, TikTok, Telegram, X (Twitter), YouTube, Discord e Snapchat, além dos e-mails @email.com e @mail.com.",
-                banner_title: "Atendimento Direto & Tabela Atualizada",
-                banner_desc: "Confira nossa tabela no Telegram ou entre em contato direto pelo nosso e-mail oficial."
+                form_name: "Nome Completo", form_email: "Seu E-mail de Contato (Obrigatório)", form_interest: "Qual serviço você procura?",
+                form_target: "@Username ou E-mail Desejado", form_msg: "Detalhes Adicionais & Plataforma",
+                opt_1: "Comprar Username Disponível da Tabela do Telegram ($500 - $50k USD)", opt_2: "Reivindicar Username Inativo (+ $5.000 USD)", opt_3: "Remoção de Ban de Conta do Instagram (+ $8.000 USD)", opt_4: "Serviço de Transferência SWAP de Username para minha conta", opt_5: "Comprar E-mail Raro @email.com / @mail.com",
+                form_submit: "ENVIAR E-MAIL"
             },
             en: {
-                nav_available: "Available Handles",
-                nav_platforms: "Platforms",
-                nav_how: "How It Works",
-                nav_emails: "Rare Emails",
-                nav_pricing: "Pricing",
-                nav_faq: "FAQ",
                 hero_badge: "Exclusive Portfolio & Meta Services",
                 hero_title: "Unique Usernames, Short Handles & Inactive Claims",
                 feat_1: "Ultra rare 2, 3 and 4 letter usernames",
@@ -1465,67 +635,48 @@
                 feat_5: "Exclusive sales of rare email domains @email.com & @mail.com",
                 btn_telegram_list: "VIEW TABLE ON TELEGRAM",
                 btn_email_direct: "Email Us Direct",
-                plat_title: "Ready Handles & Claims Across Multiple Platforms:",
-                tlg_badge: "Real-Time Asset List",
                 tlg_title: "The Full Table Of Available Usernames Is On Telegram!",
                 tlg_desc: "We hold a portfolio of available handles ranging from $500 to $50,000 USD. Access our official channel for real-time updates across Instagram, TikTok, Telegram, X, YouTube, Discord and Snapchat.",
-                pay_badge: "Accepted Payments",
                 pay_title: "Secure & Global Payment Methods",
-                pay_sub: "For full security, ease and instant international settlement, we accept crypto payments:",
+                pay_sub: "For full security, ease and instant international settlement, we accept crypto payments: USDT (TRC20 / ERC20), Cryptocurrencies (BTC, ETH, SOL) and Escrow settlement.",
+                unban_badge: "Specialized Meta Service",
+                unban_title: "Instagram Permanent Ban Removal",
+                unban_desc: "We remove bans from permanently deactivated Instagram accounts or accounts where appeals haven't been submitted yet.",
+                unban_time: "Timeframe: 24h to 48 hours",
+                unban_price: "Investment: + $8,000 USD",
+                btn_telegram_unban: "REQUEST VIA TELEGRAM",
                 how_title: "How The Process & SWAP Transfer Works",
                 how_sub: "Learn step by step how we ensure instant delivery and safe handle transfers:",
-                proc_1: "Pick an available handle from Telegram or submit an inactive claim request to iii@email.com.",
-                proc_2: "Instant delivery upon payment confirmation in USDT / Crypto.",
-                proc_3: "When buying a ready handle, you receive full login credentials and direct account access.",
-                proc_4: "We offer username SWAP transfer to move the handle to your preferred Instagram/platform account (additional fee applies).",
-                email_badge: "Digital Exclusivity",
+                proc_1_t: "Asset Selection or Request", proc_1: "Pick an available handle from Telegram or submit an inactive claim request to iii@email.com.",
+                proc_2_t: "Fast Crypto Payment", proc_2: "Instant delivery upon payment confirmation in USDT / Crypto.",
+                proc_3_t: "Direct Account Access", proc_3: "When buying a ready handle, you receive full login credentials and direct account access.",
+                proc_4_t: "SWAP Transfer Technique (Optional)", proc_4: "We offer username SWAP transfer to move the handle to your preferred Instagram/platform account (additional fee applies).",
                 email_title: "Rare Email Sales @email.com & @mail.com",
                 email_desc: "We sell short handles, dictionary names and commercial handles under exclusive @email.com and @mail.com domains.",
                 cases_title: "Client Case Studies",
                 cases_sub: "Check out some of our completed deliveries:",
                 price_title: "Pricing & Services",
                 price_sub: "Overview of price ranges for ready handles and claim requests:",
-                price_t1_badge: "Ready Inventory",
                 price_t1_title: "Available Usernames",
                 price_t1_desc: "2, 3 and 4 letter handles, rare words, and high impact brand handles ($500 to $50,000 USD).",
                 btn_view_list: "View List On Telegram",
-                price_t2_badge: "On-Demand Service",
                 price_t2_title: "Inactive Username Claim",
                 price_t2_desc: "Claim service via Meta partners for inactive accounts. Claiming fees start over $5,000 USD.",
                 btn_request_claim: "Request Quote Via Email",
-                form_title: "Request Assistance",
-                form_sub: "Fill out the form below to receive a response directly in your inbox.",
-                form_name: "Full Name",
-                form_email: "Contact Email (Required)",
-                form_interest: "Which service are you looking for?",
-                opt_1: "Buy Available Handle from Telegram List ($500 - $50k USD)",
-                opt_2: "Claim Inactive Username (+$5,000 USD)",
-                opt_3: "SWAP Transfer Service to my personal account",
-                opt_4: "Buy Rare Email @email.com / @mail.com",
-                form_target: "Desired @Username or Email",
-                form_msg: "Additional Details & Platform",
-                form_submit: "SEND EMAIL",
                 faq_title: "Frequently Asked Questions (FAQ)",
-                faq_q1: "Where can I view all available handles?",
-                faq_a1: "Our complete inventory of 2, 3, 4 letter handles and rare words is updated in real-time on Telegram (t.me/buildpurpose).",
-                faq_q2: "How does the SWAP technique transfer work?",
-                faq_a2: "Account access is transferred instantly after crypto payment. Moving the @ handle to your existing profile is done via SWAP technique for an extra fee.",
-                faq_q3: "How much does an inactive handle claim cost?",
-                faq_a3: "Inactive claims cost over $5,000 USD depending on handle rarity and complexity.",
-                faq_q4: "What payment methods do you accept?",
-                faq_a4: "We accept USDT, Crypto (BTC, ETH, SOL) and virtual currencies.",
-                faq_q5: "Which platforms and email domains do you support?",
-                faq_a5: "Instagram, TikTok, Telegram, X, YouTube, Discord, Snapchat, plus @email.com & @mail.com domains.",
-                banner_title: "Direct Support & Updated Table",
-                banner_desc: "Check our Telegram list or email us directly at our official address."
+                faq_q1: "Where can I view all available handles?", faq_a1: "Our complete inventory of 2, 3, 4 letter handles and rare words is updated in real-time on Telegram (t.me/buildpurpose).",
+                faq_q2: "How does the SWAP technique transfer work?", faq_a2: "Account access is transferred instantly after crypto payment. Moving the @ handle to your existing profile is done via SWAP technique for an extra fee.",
+                faq_q3: "How much does an inactive handle claim cost?", faq_a3: "Inactive claims cost over $5,000 USD depending on handle rarity and complexity.",
+                faq_q4: "What payment methods do you accept?", faq_a4: "We accept USDT, Crypto (BTC, ETH, SOL) and virtual currencies.",
+                faq_q5: "Which platforms and email domains do you support?", faq_a5: "Instagram, TikTok, Telegram, X, YouTube, Discord, Snapchat, plus @email.com & @mail.com domains.",
+                form_title: "Request Support",
+                form_sub: "Fill out the form below to receive a response directly in your inbox.",
+                form_name: "Full Name", form_email: "Contact Email (Required)", form_interest: "Service needed?",
+                form_target: "Desired @Username or Email", form_msg: "Additional Details & Platform",
+                opt_1: "Buy Available Handle from Telegram List ($500 - $50k USD)", opt_2: "Claim Inactive Username (+$5,000 USD)", opt_3: "Instagram Permanent Ban Removal (+$8,000 USD)", opt_4: "SWAP Transfer Service to my personal account", opt_5: "Buy Rare Email @email.com / @mail.com",
+                form_submit: "SEND EMAIL"
             },
             es: {
-                nav_available: "Nombres Disponibles",
-                nav_platforms: "Plataformas",
-                nav_how: "Cómo Funciona",
-                nav_emails: "Correos Raros",
-                nav_pricing: "Valores",
-                nav_faq: "FAQ",
                 hero_badge: "Portafolio Exclusivo y Servicios Meta",
                 hero_title: "Usernames Únicos, Cortos y Reclamaciones Premium",
                 feat_1: "Usernames ultra raros de 2, 3 y 4 letras",
@@ -1534,130 +685,105 @@
                 feat_4: "Transferencia con técnica SWAP a tu cuenta preferida",
                 feat_5: "Venta exclusiva de correos raros @email.com y @mail.com",
                 btn_telegram_list: "VER TABLA EN TELEGRAM",
-                btn_email_direct: "Contactar por E-mail",
-                plat_title: "Usernames Listos y Reclamaciones Multiplataforma:",
-                tlg_badge: "Lista de Activos en Tiempo Real",
+                btn_email_direct: "Contactar por Email",
                 tlg_title: "¡La Tabla Completa de Usernames está en Telegram!",
                 tlg_desc: "Contamos con una lista de usernames listos para entrega desde $500 hasta $50,000 USD. Entra a nuestro canal oficial para ver la lista de Instagram, TikTok, Telegram, X, YouTube, Discord y Snapchat.",
-                pay_badge: "Pagos Aceptados",
                 pay_title: "Métodos de Pago Seguros y Globales",
-                pay_sub: "Aceptamos pagos rápidos y seguros en criptomonedas y monedas virtuales:",
+                pay_sub: "Para total seguridad y rapidez internacional, aceptamos pagos en criptomonedas y monedas virtuales: USDT (TRC20 / ERC20), Criptomonedas (BTC, ETH, SOL) y liquidación por Escrow.",
+                unban_badge: "Servicio Especializado Meta",
+                unban_title: "Remoción de Ban de Cuentas de Instagram",
+                unban_desc: "Removemos baneos de cuentas de Instagram desactivadas permanentemente o que aún no han enviado apelaciones.",
+                unban_time: "Plazo: 24h a 48 horas",
+                unban_price: "Inversión: + $8,000 USD",
+                btn_telegram_unban: "SOLICITAR VÍA TELEGRAM",
                 how_title: "Cómo Funciona el Proceso y Transferencia SWAP",
                 how_sub: "Paso a paso cómo garantizamos entrega instantánea y transferencia segura:",
-                proc_1: "Elige un username de Telegram o solicita reclamación inactiva a iii@email.com.",
-                proc_2: "Proceso INSTANTÁNEO tras confirmación de pago en USDT / Crypto.",
-                proc_3: "Al comprar un username listo, recibes acceso directo a la cuenta propietaria en qualquer plataforma.",
-                proc_4: "Transferimos el @username a tu cuenta preferida mediante técnica SWAP (costo adicional).",
-                email_badge: "Exclusividad Digital",
+                proc_1_t: "Elección del Activo o Solicitud", proc_1: "Elige un username de Telegram ou solicita reclamación inactiva a iii@email.com.",
+                proc_2_t: "Pago Rápido en Crypto", proc_2: "Proceso INSTANTÁNEO tras confirmación de pago en USDT / Crypto.",
+                proc_3_t: "Acceso Directo a la Cuenta", proc_3: "Al comprar un username listo, recibes acceso directo a la cuenta propietaria en qualquier plataforma.",
+                proc_4_t: "Transferencia SWAP (Opcional)", proc_4: "Transferimos el @username a tu cuenta preferida mediante técnica SWAP (costo adicional).",
                 email_title: "Venta de Correos Raros @email.com y @mail.com",
                 email_desc: "Vendemos correos cortos y corporativos bajo dominios exclusivos @email.com y @mail.com.",
                 cases_title: "Casos de Éxito de Clientes",
                 cases_sub: "Revisa algunas de nuestras entregas realizadas:",
                 price_title: "Valores y Servicios",
                 price_sub: "Rango de precios para nombres listos y reclamaciones:",
-                price_t1_badge: "Inventario Listo",
                 price_t1_title: "Usernames Disponibles",
                 price_t1_desc: "Nombres de 2, 3 y 4 letras y palabras raras ($500 a $50,000 USD). Ver tabla en Telegram.",
                 btn_view_list: "Ver Lista en Telegram",
-                price_t2_badge: "Servicio Bajo Demanda",
                 price_t2_title: "Reclamar @Username Inactivo",
                 price_t2_desc: "Reclamación via socios de Meta. Precios de reclamación a partir de más de $5,000 USD.",
                 btn_request_claim: "Pedir Presupuesto por E-mail",
-                form_title: "Solicitar Atendido",
+                faq_title: "Preguntas Frecuentes (FAQ)",
+                faq_q1: "¿Dónde veo los usernames disponibles para entrega inmediata?", faq_a1: "Toda la lista de usernames de 2, 3 y 4 letras está en Telegram (t.me/buildpurpose).",
+                faq_q2: "¿Cómo funciona la entrega y la técnica SWAP?", faq_a2: "Entrega instantánea de la cuenta tras pago crypto. Transferir el @ a tu perfil requiere técnica SWAP (con costo adicional).",
+                faq_q3: "¿Cuánto cuesta reclamar un username inactivo?", faq_a3: "Reclamar usernames inactivos cuesta más de $5,000 USD según la raridad.",
+                faq_q4: "¿Qué métodos de pago aceptan?", faq_a4: "USDT, Criptomonedas (BTC, ETH, SOL) y monedas virtuales.",
+                faq_q5: "¿Qué redes sociales y correos ofrecen?", faq_a5: "Instagram, TikTok, Telegram, X, YouTube, Discord, Snapchat, y correos @email.com / @mail.com.",
+                form_title: "Solicitar Atención",
                 form_sub: "Rellena el formulario para recibir respuesta en tu correo.",
-                form_name: "Nombre Completo",
-                form_email: "Correo de Contacto (Obligatorio)",
-                form_interest: "¿Qué servicio buscas?",
-                opt_1: "Comprar Username de la lista de Telegram ($500 - $50k USD)",
-                opt_2: "Reclamar Username Inactivo (+ $5,000 USD)",
-                opt_3: "Servicio de Transferencia SWAP a mi cuenta",
-                opt_4: "Comprar Correo Raro @email.com / @mail.com",
-                form_target: "@Username o Correo Deseado",
-                form_msg: "Detalles Adicionales y Plataforma",
-                form_submit: "ENVIAR E-MAIL",
-                faq_title: "Preguntas Frequentes (FAQ)",
-                faq_q1: "¿Dónde veo los usernames disponibles para entrega inmediata?",
-                faq_a1: "Toda la lista de usernames de 2, 3 y 4 letras está en Telegram (t.me/buildpurpose).",
-                faq_q2: "¿Cómo funciona la entrega y la técnica SWAP?",
-                faq_a2: "Entrega instantánea de la cuenta tras pago crypto. Transferir el @ a tu perfil requiere técnica SWAP (con costo adicional).",
-                faq_q3: "¿Cuánto cuesta reclamar un username inactivo?",
-                faq_a3: "Reclamar usernames inactivos cuesta más de $5,000 USD según la raridad.",
-                faq_q4: "¿Qué métodos de pago aceptan?",
-                faq_a4: "USDT, Criptomonedas (BTC, ETH, SOL) y monedas virtuales.",
-                faq_q5: "¿Qué redes sociales y correos ofrecen?",
-                faq_a5: "Instagram, TikTok, Telegram, X, YouTube, Discord, Snapchat, y correos @email.com / @mail.com.",
-                banner_title: "Atención Directa y Tabla Actualizada",
-                banner_desc: "Revisa nuestra tabla en Telegram o escríbenos diretamente a nuestro e-mail oficial."
+                form_name: "Nombre Completo", form_email: "Correo de Contacto (Obligatorio)", form_interest: "¿Qué servicio buscas?",
+                form_target: "@Username o Correo Deseado", form_msg: "Detalles Adicionales y Plataforma",
+                opt_1: "Comprar Username de la lista de Telegram ($500 - $50k USD)", opt_2: "Reivindicar Username Inativo (+ $5.000 USD)", opt_3: "Remoción de Ban de Conta do Instagram (+ $8.000 USD)", opt_4: "Servicio de Transferencia SWAP a mi cuenta", opt_5: "Comprar Correo Raro @email.com / @mail.com",
+                form_submit: "ENVIAR EMAIL"
             }
         };
 
         function setLanguage(lang) {
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.innerText.toLowerCase() === lang);
-            });
-
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.innerText.toLowerCase() === lang));
             const dict = translations[lang];
             if (!dict) return;
-
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (dict[key]) {
-                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                        el.placeholder = dict[key];
-                    } else {
-                        el.innerText = dict[key];
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = dict[key];
+                    else {
+                        const span = el.querySelector('span');
+                        if (span) span.innerText = dict[key];
+                        else el.innerText = dict[key];
                     }
                 }
             });
         }
 
-        /* Carousel Logic */
-        let currentSlide = 0;
+        function toggleF(btn) {
+            const item = btn.parentElement;
+            document.querySelectorAll('.faq-item').forEach(i => {
+                if(i !== item) i.classList.remove('active');
+            });
+            item.classList.toggle('active');
+        }
+
+        let currC = 0;
         const totalSlides = 5;
 
-        function updateCarousel() {
-            const track = document.getElementById('carouselTrack');
-            const slideEl = document.querySelector('.carousel-slide');
-            if (!slideEl) return;
-
-            const style = window.getComputedStyle(track);
-            const gap = parseFloat(style.gap) || 20;
-            const slideWidth = slideEl.getBoundingClientRect().width + gap;
-
-            track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
-
-            const dots = document.querySelectorAll('.carousel-dot');
-            dots.forEach((dot, idx) => {
-                dot.classList.toggle('active', idx === currentSlide);
-            });
+        function moveC(dir) {
+            const track = document.getElementById('cTrack');
+            if (!track || !track.children.length) return;
+            currC += dir;
+            if (currC < 0) currC = totalSlides - 1;
+            if (currC >= totalSlides) currC = 0;
+            const slideWidth = track.children[0].getBoundingClientRect().width + 24;
+            track.style.transform = `translateX(-${currC * slideWidth}px)`;
         }
 
-        function moveCarousel(direction) {
-            currentSlide += direction;
-            if (currentSlide < 0) currentSlide = totalSlides - 1;
-            if (currentSlide >= totalSlides) currentSlide = 0;
-            updateCarousel();
+        function submitForm(event) {
+            event.preventDefault();
+            const name = document.getElementById('fieldName').value;
+            const email = document.getElementById('fieldEmail').value;
+            const selectedRadio = document.querySelector('input[name="srv"]:checked');
+            const srv = selectedRadio ? selectedRadio.parentElement.innerText.trim() : '';
+            const target = document.getElementById('fieldTarget').value;
+            const msg = document.getElementById('fieldMsg').value;
+
+            const subject = encodeURIComponent("Solicitação de Atendimento - Build Purpose");
+            const body = encodeURIComponent(`Nome: ${name}\nE-mail de Contato: ${email}\nServiço Procurado: ${srv}\n@Username ou E-mail Desejado: ${target}\nDetalhes / Plataforma: ${msg}`);
+
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=iii@email.com&su=${subject}&body=${body}`;
+            window.open(gmailUrl, '_blank');
         }
 
-        function goToSlide(index) {
-            currentSlide = index;
-            updateCarousel();
-        }
-
-        /* FAQ Accordion Toggle */
-        function toggleFaq(headerEl) {
-            const item = headerEl.parentElement;
-            const isOpen = item.classList.contains('open');
-
-            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-
-            if (!isOpen) {
-                item.classList.add('open');
-            }
-        }
-
-        window.addEventListener('resize', updateCarousel);
-        window.addEventListener('load', updateCarousel);
+        window.addEventListener('resize', () => moveC(0));
     </script>
 </body>
 </html>
